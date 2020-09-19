@@ -38,8 +38,62 @@
 
 
 
+### Tasking
 
+#### Locker
+##### 存包
+1. Given 待存小包和有空余容量的S型号Locker     When Locker存包       Then 存包成功，返回S型号小票
+2. Given 待存中包和有空余容量的M型号Locker     When Locker存包       Then 存包成功，返回M型号小票
+3. Given 待存大包和有空余容量的L型号Locker     When Locker存包       Then 存包成功，返回L型号小票
+4. Given 待存小包和无空余容量的S型号Locker     When Locker存包       Then 存包失败，提示用户柜已满
+5. Given 待存中包和无空余容量的M型号Locker     When Locker存包       Then 存包失败，提示用户柜已满
+6. Given 待存大包和无空余容量的L型号Locker     When Locker存包       Then 存包失败，提示用户柜已满
+##### 取包
+7. Given S型号有效小票及S型号Locker       When Locker取包       Then 取包成功
+8. Given M型号有效小票及M型号Locker       When Locker取包       Then 取包成功
+9. Given L型号有效小票及L型号Locker       When Locker取包       Then 取包成功
+10. Given S型号无效小票及S型号Locker      When Locker取包       Then 取包失败，提示票据无效
+13. Given M型号无效小票及M型号Locker      When Locker取包       Then 取包失败，提示票据无效
+16. Given L型号无效小票及L型号Locker      When Locker取包       Then 取包失败，提示票据无效
+11. Given M型号小票及S型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+12. Given L型号小票及S型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+14. Given S型号小票及M型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+15. Given L型号小票及M型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+17. Given S型号小票及L型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+18. Given M型号小票及L型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
 
+#### LockerRobot
+##### 存包
+19. Given 待存中包和PrimaryLockerRobot及其管理1个有空余容量的M型号Locker      When Robot存包       Then 成功存包到第1个Locker，返回M型号小票
+20. Given 待存中包和PrimaryLockerRobot及其管理2个有空余容量的M型号Locker      When Robot存包       Then 成功存包到第1个Locker，返回M型号小票
+21. Given 待存中包和PrimaryLockerRobot及其管理2个M型号Locker,其中第1个Locker无空余容量，第二个Locker有空余容量      When Robot存包       Then 成功存包到第2个Locker，返回M型号小票
+22. Given 待存中包和PrimaryLockerRobot及其管理2个均无空余容量的M型号Locker      When Robot存包       Then 存包失败，提示用户柜已满
+23. Given 待存大包和SuperLockerRobot及其管理1个有空余容量的L型号Locker,第1个Locker空余容量和总容量分别是3，6，第2个Locker空余容量和总容量分别是2，2     When Robot存包       Then 成功存包到第2个Locker，返回L型号小票
+24. Given 待存大包和SuperLockerRobot及其管理2个有空余容量的L型号Locker     When Robot存包       Then 成功存包到第1个Locker，返回L型号小票
+25. Given 待存大包和SuperLockerRobot及其管理2个均无空余容量的L型号Locker     When Robot存包       Then 存包失败，提示用户柜已满
+##### 取包
+26. Given M型号有效小票及PrimaryLockerRobot     When Robot取包       Then 取包成功
+27. Given M型号无效小票及PrimaryLockerRobot     When Robot取包       Then 取包失败，提示票据无效
+28. Given S型号小票及PrimaryLockerRobot     When Robot取包       Then 取包失败，提示票据型号不匹配
+29. Given L型号小票及PrimaryLockerRobot     When Robot取包       Then 取包失败，提示票据型号不匹配
+30. Given L型号有效小票及SuperLockerRobot     When Robot取包       Then 取包成功
+31. Given L型号无效小票及SuperLockerRobot    When Robot取包       Then 取包失败，提示票据无效
+32. Given S型号小票及SuperLockerRobot     When Robot取包       Then 取包失败，提示票据型号不匹配
+33. Given M型号小票及SuperLockerRobot     When Robot取包       Then 取包失败，提示票据型号不匹配
 
+#### LockerRobotManager
+##### 存包
+34. Given 待存小包和LockerRobotManager只管理一个有空余容量Locker（S号）、一个PrimaryLockerRobot（管理一个Locker）和SuperLockerRobot（管理一个Locker）    When Manager存包       Then 存包成功，返回S型号小票
+35. Given 待存小包和LockerRobotManager只管理一个无空余容量Locker（S号）、一个PrimaryLockerRobot（管理一个Locker）和SuperLockerRobot（管理一个Locker）    When Manager存包       Then 存包失败，提示用户柜已满
+36. Given 待存中包和LockerRobotManager只管理一个Locker（S号）、一个有空余容量PrimaryLockerRobot（管理一个Locker）和SuperLockerRobot（管理一个Locker）    When Manager存包       Then 存包成功，返回M型号小票
+37. Given 待存中包和LockerRobotManager只管理一个Locker（S号）、一个无空余容量PrimaryLockerRobot（管理一个Locker）和SuperLockerRobot（管理一个Locker）    When Manager存包       Then 存包失败，提示用户柜已满
+38. Given 待存大包和LockerRobotManager只管理一个Locker（S号）、一个PrimaryLockerRobot（管理一个Locker）和有空余容量SuperLockerRobot（管理一个Locker）    When Manager存包       Then 存包成功，返回L型号小票
+39. Given 待存大包和LockerRobotManager只管理一个Locker（S号）、一个PrimaryLockerRobot（管理一个Locker）和无空余容量SuperLockerRobot（管理一个Locker）    When Manager存包       Then 存包失败，提示用户柜已满
 
- 
+##### 取包
+40. Given S型号有效小票和LockerRobotManager    When Manager取包       Then 取包成功
+41. Given S型号无效小票和LockerRobotManager    When Manager取包       Then 取包失败，提示票据无效
+42. Given M型号有效小票和LockerRobotManager    When Manager取包       Then 取包成功
+43. Given M型号无效小票和LockerRobotManager    When Manager取包       Then 取包失败，提示票据无效
+44. Given L型号有效小票和LockerRobotManager    When Manager取包       Then 取包成功
+45. Given L型号无效小票和LockerRobotManager    When Manager取包       Then 取包失败，提示票据无效
