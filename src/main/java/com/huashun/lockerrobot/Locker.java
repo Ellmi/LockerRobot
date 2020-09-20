@@ -2,6 +2,7 @@ package com.huashun.lockerrobot;
 
 import com.huashun.lockerrobot.exception.InvalidTicketException;
 import com.huashun.lockerrobot.exception.LockerIsFullException;
+import com.huashun.lockerrobot.exception.TicketTypeNotMatch;
 
 import java.util.HashMap;
 
@@ -25,6 +26,7 @@ public class Locker {
     }
 
     public Bag fetchBagBy(Ticket ticket) {
+        if (!ticket.getLockerSizeType().equals(sizeType)) throw new TicketTypeNotMatch();
         Bag bag = ticketBagMap.remove(ticket);
         if (bag == null) throw new InvalidTicketException();
         return bag;
