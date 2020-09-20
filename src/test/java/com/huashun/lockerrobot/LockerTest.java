@@ -6,8 +6,9 @@ import com.huashun.lockerrobot.exception.TicketTypeNotMatch;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import static com.huashun.lockerrobot.SizeType.M;
 import static com.huashun.lockerrobot.SizeType.S;
+import static com.huashun.lockerrobot.SizeType.M;
+import static com.huashun.lockerrobot.SizeType.L;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -76,5 +77,14 @@ public class LockerTest {
 
     }
 
+    @ParameterizedTest
+    @EnumSource(value = SizeType.class, names = {"S", "M"})
+    public void should_throw_TicketTypeNotMatch_when_l_locker_fetch_bag_given_not_l_locker_type_ticket(SizeType sizeType) {
+        Locker locker = new Locker(L, 1);
+        locker.store(new Bag(L));
+
+        assertThrows(TicketTypeNotMatch.class, () -> locker.fetchBagBy(new Ticket(sizeType)));
+
+    }
 
 }
