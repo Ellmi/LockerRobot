@@ -47,7 +47,7 @@ public class LockerTest {
 
     @ParameterizedTest
     @EnumSource(SizeType.class)
-    public void should_throw_InvalidTicketException_when_fetch_bag_given_different_locker_type_invalid_ticket(SizeType sizeType) {
+    public void should_throw_InvalidTicketException_when_fetch_bag_given_invalid_ticket(SizeType sizeType) {
         Locker locker = new Locker(sizeType, 1);
         locker.store(new Bag(sizeType));
 
@@ -57,7 +57,7 @@ public class LockerTest {
 
     @ParameterizedTest
     @EnumSource(value = SizeType.class, names = {"M", "L"})
-    public void should_throw_TicketTypeNotMatch_when_fetch_bag_given_not_matched_locker_type_ticket(SizeType sizeType) {
+    public void should_throw_TicketTypeNotMatch_when_s_locker_fetch_bag_given_not_s_locker_type_ticket(SizeType sizeType) {
         Locker locker = new Locker(S, 1);
         locker.store(new Bag(S));
 
