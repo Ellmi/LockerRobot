@@ -1,5 +1,5 @@
 package com.huashun.lockerrobot;
 
 public enum SizeType {
-    S, M
+    S, M, L
 }
