@@ -1,7 +1,5 @@
 package com.huashun.lockerrobot;
 
-import static com.huashun.lockerrobot.SizeType.S;
-
 public class Locker {
     private SizeType sizeType;
     private int capacity;
@@ -12,6 +10,6 @@ public class Locker {
     }
 
     public Ticket store(Bag bag) {
-        return new Ticket(S);
+        return new Ticket(sizeType);
     }
 }

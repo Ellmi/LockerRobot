@@ -1,19 +1,20 @@
 package com.huashun.lockerrobot;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
-import static com.huashun.lockerrobot.SizeType.S;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LockerTest {
 
-    @Test
-    public void should_return_s_ticket_when_store_bag_given_small_bag_and_s_locker() {
-        Locker locker = new Locker(S, 1);
+    @ParameterizedTest
+    @EnumSource(SizeType.class)
+    public void should_return_correct_locker_type_ticket_when_store_bag_given_different_size_bag_and_locker(SizeType sizeType) {
+        Locker locker = new Locker(sizeType, 1);
 
-        Ticket ticket = locker.store(new Bag(S));
+        Ticket ticket = locker.store(new Bag(sizeType));
 
-        assertEquals(S, ticket.getLockerSizeType());
+        assertEquals(sizeType, ticket.getLockerSizeType());
     }
 
 
