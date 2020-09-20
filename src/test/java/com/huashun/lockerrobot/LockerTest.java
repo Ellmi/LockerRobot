@@ -4,6 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LockerTest {
 
@@ -15,6 +16,16 @@ public class LockerTest {
         Ticket ticket = locker.store(new Bag(sizeType));
 
         assertEquals(sizeType, ticket.getLockerSizeType());
+    }
+
+    @ParameterizedTest
+    @EnumSource(SizeType.class)
+    public void should_throw_LockerIsFullException_when_store_bag_given_no_free_capacity_locker(SizeType sizeType) {
+        Locker locker = new Locker(sizeType, 1);
+        locker.store(new Bag(sizeType));
+
+        assertThrows(LockerIsFullException.class, () -> locker.store(new Bag(sizeType)));
+
     }
 
 

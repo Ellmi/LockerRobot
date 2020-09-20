@@ -10,6 +10,8 @@ public class Locker {
     }
 
     public Ticket store(Bag bag) {
+        if (capacity == 0) throw new LockerIsFullException();
+        capacity--;
         return new Ticket(sizeType);
     }
 }
