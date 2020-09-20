@@ -1,5 +1,8 @@
 package com.huashun.lockerrobot;
 
+import com.huashun.lockerrobot.exception.InvalidTicketException;
+import com.huashun.lockerrobot.exception.LockerIsFullException;
+
 import java.util.HashMap;
 
 public class Locker {
@@ -22,7 +25,7 @@ public class Locker {
     }
 
     public Bag fetchBagBy(Ticket ticket) {
-        Bag bag = ticketBagMap.get(ticket);
+        Bag bag = ticketBagMap.remove(ticket);
         if (bag == null) throw new InvalidTicketException();
         return bag;
     }

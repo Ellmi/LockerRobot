@@ -53,12 +53,12 @@
 8. Given M型号有效小票及M型号Locker       When Locker取包       Then 取包成功
 9. Given L型号有效小票及L型号Locker       When Locker取包       Then 取包成功
 10. Given S型号无效小票及S型号Locker      When Locker取包       Then 取包失败，提示票据无效
-13. Given M型号无效小票及M型号Locker      When Locker取包       Then 取包失败，提示票据无效
-16. Given L型号无效小票及L型号Locker      When Locker取包       Then 取包失败，提示票据无效
-11. Given M型号小票及S型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
-12. Given L型号小票及S型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
-14. Given S型号小票及M型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
-15. Given L型号小票及M型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+11. Given M型号无效小票及M型号Locker      When Locker取包       Then 取包失败，提示票据无效
+12. Given L型号无效小票及L型号Locker      When Locker取包       Then 取包失败，提示票据无效
+13. Given M型号小票及S型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+14. Given L型号小票及S型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+15. Given S型号小票及M型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
+16. Given L型号小票及M型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
 17. Given S型号小票及L型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
 18. Given M型号小票及L型号Locker      When Locker取包       Then 取包失败，提示票据型号不匹配
 

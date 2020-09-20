@@ -1,5 +1,7 @@
 package com.huashun.lockerrobot;
 
+import com.huashun.lockerrobot.exception.InvalidTicketException;
+import com.huashun.lockerrobot.exception.LockerIsFullException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
