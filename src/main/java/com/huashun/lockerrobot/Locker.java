@@ -22,6 +22,8 @@ public class Locker {
     }
 
     public Bag fetchBagBy(Ticket ticket) {
-        return ticketBagMap.get(ticket);
+        Bag bag = ticketBagMap.get(ticket);
+        if (bag == null) throw new InvalidTicketException();
+        return bag;
     }
 }
