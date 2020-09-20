@@ -5,6 +5,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class LockerTest {
 
@@ -26,6 +27,18 @@ public class LockerTest {
 
         assertThrows(LockerIsFullException.class, () -> locker.store(new Bag(sizeType)));
 
+    }
+
+    @ParameterizedTest
+    @EnumSource(SizeType.class)
+    public void should_return_correct_bag_when_fetch_bag_given_different_locker_type_ticket_and_locker(SizeType sizeType) {
+        Locker locker = new Locker(sizeType, 1);
+        Bag storedBag = new Bag(sizeType);
+        Ticket ticket = locker.store(storedBag);
+
+        Bag fetchedBag = locker.fetchBagBy(ticket);
+
+        assertSame(storedBag, fetchedBag);
     }
 
 
