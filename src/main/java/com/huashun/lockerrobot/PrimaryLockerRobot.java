@@ -2,8 +2,6 @@ package com.huashun.lockerrobot;
 
 import java.util.List;
 
-import static com.huashun.lockerrobot.SizeType.M;
-
 public class PrimaryLockerRobot {
     private List<Locker> managedLockers;
 
@@ -12,6 +10,6 @@ public class PrimaryLockerRobot {
     }
 
     public Ticket store(Bag bag) {
-        return new Ticket(M);
+        return managedLockers.get(0).store(bag);
     }
 }
