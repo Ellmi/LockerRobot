@@ -1,5 +1,6 @@
 package com.huashun.lockerrobot;
 
+import com.huashun.lockerrobot.exception.InvalidTicketException;
 import com.huashun.lockerrobot.exception.LockerIsFullException;
 import org.junit.jupiter.api.Test;
 
@@ -81,5 +82,14 @@ public class LockerRobotManagerTest {
         Bag fetchedBag = lockerRobotManager.fetchBagBy(ticket);
 
         assertSame(storedBag, fetchedBag);
+    }
+
+    @Test
+    public void should_throw_InvalidTicketException_when_fetch_bag_given_invalid_s_ticket() {
+        LockerRobotManager lockerRobotManager = buildLockerRobotManager();
+        Bag storedBag = new Bag(S);
+        lockerRobotManager.store(storedBag);
+
+        assertThrows(InvalidTicketException.class, () -> lockerRobotManager.fetchBagBy(new Ticket(S)));
     }
 }
