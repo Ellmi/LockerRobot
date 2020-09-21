@@ -21,4 +21,13 @@ public class LockerRobotManager {
                 return null;
         }
     }
+
+    public Bag fetchBagBy(Ticket ticket) {
+        switch (ticket.getLockerSizeType()) {
+            case S:
+                return storableList.stream().filter(storable -> storable instanceof Locker).findFirst().get().fetchBagBy(ticket);
+            default:
+                return null;
+        }
+    }
 }

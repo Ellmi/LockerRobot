@@ -10,6 +10,7 @@ import static com.huashun.lockerrobot.SizeType.M;
 import static com.huashun.lockerrobot.SizeType.S;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class LockerRobotManagerTest {
 
@@ -69,5 +70,16 @@ public class LockerRobotManagerTest {
         lockerRobotManager.store(new Bag(L));
 
         assertThrows(LockerIsFullException.class, () -> lockerRobotManager.store(new Bag(L)));
+    }
+
+    @Test
+    public void should_return_correct_bag_when_fetch_bag_given_valid_s_ticket() {
+        LockerRobotManager lockerRobotManager = buildLockerRobotManager();
+        Bag storedBag = new Bag(S);
+        Ticket ticket = lockerRobotManager.store(storedBag);
+
+        Bag fetchedBag = lockerRobotManager.fetchBagBy(ticket);
+
+        assertSame(storedBag, fetchedBag);
     }
 }
