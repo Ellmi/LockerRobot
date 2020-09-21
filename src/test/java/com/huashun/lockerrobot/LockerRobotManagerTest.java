@@ -53,4 +53,12 @@ public class LockerRobotManagerTest {
         assertThrows(LockerIsFullException.class, () -> lockerRobotManager.store(new Bag(M)));
     }
 
+    @Test
+    public void should_return_l_locker_type_ticket_when_store_medium_bag_given_robot_manage_1_s_locker_and_1_primaryLockerRobot_and_1_free_superLockerRobot() {
+        LockerRobotManager lockerRobotManager = buildLockerRobotManager();
+
+        Ticket ticket = lockerRobotManager.store(new Bag(L));
+
+        assertEquals(L, ticket.getLockerSizeType());
+    }
 }

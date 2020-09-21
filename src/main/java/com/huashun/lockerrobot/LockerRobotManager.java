@@ -15,7 +15,10 @@ public class LockerRobotManager {
                 return storableList.stream().filter(storable -> storable instanceof Locker).findFirst().get().store(bag);
             case M:
                 return storableList.stream().filter(storable -> storable instanceof PrimaryLockerRobot).findFirst().get().store(bag);
+            case L:
+                return storableList.stream().filter(storable -> storable instanceof SuperLockerRobot).findFirst().get().store(bag);
+            default:
+                return null;
         }
-        return null;
     }
 }
