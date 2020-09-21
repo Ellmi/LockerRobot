@@ -17,8 +17,8 @@ public class Locker {
         this.ticketBagMap = new HashMap<>();
     }
 
-    public int getCapacity() {
-        return capacity;
+    public boolean canStoreBag() {
+        return capacity > 0;
     }
 
     public Ticket store(Bag bag) {
