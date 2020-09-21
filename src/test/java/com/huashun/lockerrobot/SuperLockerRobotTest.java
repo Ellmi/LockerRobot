@@ -1,7 +1,11 @@
 package com.huashun.lockerrobot;
 
+import com.huashun.lockerrobot.exception.InvalidTicketException;
 import com.huashun.lockerrobot.exception.LockerIsFullException;
+import com.huashun.lockerrobot.exception.TicketTypeNotMatch;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.List;
 
@@ -69,6 +73,17 @@ public class SuperLockerRobotTest {
         superLockerRobot.store(new Bag(L));
 
         assertThrows(InvalidTicketException.class, () -> superLockerRobot.fetchBagBy(new Ticket(L)));
+
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = SizeType.class, names = {"S", "M"})
+    public void should_throw_TicketTypeNotMatch_when_fetch_bag_given_not_l_locker_type_ticket(SizeType sizeType) {
+        Locker locker = new Locker(L, 1);
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(List.of(locker));
+        superLockerRobot.store(new Bag(L));
+
+        assertThrows(TicketTypeNotMatch.class, () -> superLockerRobot.fetchBagBy(new Ticket(sizeType)));
 
     }
 }

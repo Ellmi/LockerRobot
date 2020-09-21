@@ -2,6 +2,7 @@ package com.huashun.lockerrobot;
 
 import com.huashun.lockerrobot.exception.InvalidTicketException;
 import com.huashun.lockerrobot.exception.LockerIsFullException;
+import com.huashun.lockerrobot.exception.TicketTypeNotMatch;
 
 import java.util.Comparator;
 import java.util.List;
@@ -21,6 +22,9 @@ public class SuperLockerRobot {
     }
 
     public Bag fetchBagBy(Ticket ticket) {
+        if (ticket.getLockerSizeType() != SizeType.L) {
+            throw new TicketTypeNotMatch();
+        }
         Optional<Locker> goalLocker = managedLockers.stream().filter(locker -> locker.contains(ticket)).findAny();
         if (goalLocker.isPresent()) {
             return goalLocker.get().fetchBagBy(ticket);
