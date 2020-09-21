@@ -1,5 +1,6 @@
 package com.huashun.lockerrobot;
 
+import com.huashun.lockerrobot.exception.InvalidTicketException;
 import com.huashun.lockerrobot.exception.LockerIsFullException;
 
 import java.util.Comparator;
@@ -20,6 +21,10 @@ public class SuperLockerRobot {
     }
 
     public Bag fetchBagBy(Ticket ticket) {
-        return managedLockers.get(0).fetchBagBy(ticket);
+        Optional<Locker> goalLocker = managedLockers.stream().filter(locker -> locker.contains(ticket)).findAny();
+        if (goalLocker.isPresent()) {
+            return goalLocker.get().fetchBagBy(ticket);
+        }
+        throw new InvalidTicketException();
     }
 }
