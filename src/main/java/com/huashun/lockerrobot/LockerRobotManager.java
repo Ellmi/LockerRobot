@@ -28,6 +28,8 @@ public class LockerRobotManager {
                 return storableList.stream().filter(storable -> storable instanceof Locker).findFirst().get().fetchBagBy(ticket);
             case M:
                 return storableList.stream().filter(storable -> storable instanceof PrimaryLockerRobot).findFirst().get().fetchBagBy(ticket);
+            case L:
+                return storableList.stream().filter(storable -> storable instanceof SuperLockerRobot).findFirst().get().fetchBagBy(ticket);
             default:
                 return null;
         }

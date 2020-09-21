@@ -112,4 +112,15 @@ public class LockerRobotManagerTest {
 
         assertThrows(InvalidTicketException.class, () -> lockerRobotManager.fetchBagBy(new Ticket(M)));
     }
+
+    @Test
+    public void should_return_correct_bag_when_fetch_bag_given_valid_l_ticket() {
+        LockerRobotManager lockerRobotManager = buildLockerRobotManager();
+        Bag storedBag = new Bag(L);
+        Ticket ticket = lockerRobotManager.store(storedBag);
+
+        Bag fetchedBag = lockerRobotManager.fetchBagBy(ticket);
+
+        assertSame(storedBag, fetchedBag);
+    }
 }
