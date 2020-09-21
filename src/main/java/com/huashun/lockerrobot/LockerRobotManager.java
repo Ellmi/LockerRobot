@@ -26,6 +26,8 @@ public class LockerRobotManager {
         switch (ticket.getLockerSizeType()) {
             case S:
                 return storableList.stream().filter(storable -> storable instanceof Locker).findFirst().get().fetchBagBy(ticket);
+            case M:
+                return storableList.stream().filter(storable -> storable instanceof PrimaryLockerRobot).findFirst().get().fetchBagBy(ticket);
             default:
                 return null;
         }
