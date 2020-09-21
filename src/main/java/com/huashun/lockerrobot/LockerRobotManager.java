@@ -13,6 +13,8 @@ public class LockerRobotManager {
         switch (bag.getSizeType()) {
             case S:
                 return storableList.stream().filter(storable -> storable instanceof Locker).findFirst().get().store(bag);
+            case M:
+                return storableList.stream().filter(storable -> storable instanceof PrimaryLockerRobot).findFirst().get().store(bag);
         }
         return null;
     }
