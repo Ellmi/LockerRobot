@@ -64,7 +64,7 @@
 
 #### LockerRobot
 ##### 存包
-19. Given 待存中包和PrimaryLockerRobot及其管理1个有空余容量的M型号Locker      When Robot存包       Then 成功存包到第1个Locker，返回M型号小票
+19. Given 待存中包和PrimaryLockerRobot及其管理1个有空余容量的M型号Locker      When Robot存包       Then 存包成功，返回M型号小票
 20. Given 待存中包和PrimaryLockerRobot及其管理2个有空余容量的M型号Locker      When Robot存包       Then 成功存包到第1个Locker，返回M型号小票
 21. Given 待存中包和PrimaryLockerRobot及其管理2个M型号Locker,其中第1个Locker无空余容量，第二个Locker有空余容量      When Robot存包       Then 成功存包到第2个Locker，返回M型号小票
 22. Given 待存中包和PrimaryLockerRobot及其管理2个均无空余容量的M型号Locker      When Robot存包       Then 存包失败，提示用户柜已满
