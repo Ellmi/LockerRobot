@@ -31,4 +31,18 @@ public class PrimaryLockerRobotTest {
         assertEquals(M, ticket.getLockerSizeType());
         assertSame(storedBag, firstLocker.fetchBagBy(ticket));
     }
+
+    @Test
+    public void should_return_m_locker_type_ticket_and_store_into_second_locker_when_store_bag_given_robot_manage_2_m_lockers_which_first_is_full_but_second_have_free_capacity() {
+        Locker firstLocker = new Locker(M, 1);
+        Locker secondLocker = new Locker(M, 1);
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(List.of(firstLocker, secondLocker));
+        primaryLockerRobot.store(new Bag(M));
+
+        Bag storedBag = new Bag(M);
+        Ticket ticket = primaryLockerRobot.store(storedBag);
+
+        assertEquals(M, ticket.getLockerSizeType());
+        assertSame(storedBag, secondLocker.fetchBagBy(ticket));
+    }
 }

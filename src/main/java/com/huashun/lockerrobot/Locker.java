@@ -17,6 +17,10 @@ public class Locker {
         this.ticketBagMap = new HashMap<>();
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
     public Ticket store(Bag bag) {
         if (capacity == 0) throw new LockerIsFullException();
         capacity--;
