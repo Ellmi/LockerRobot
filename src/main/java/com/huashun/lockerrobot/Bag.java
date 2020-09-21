@@ -7,4 +7,7 @@ public class Bag {
         this.sizeType = sizeType;
     }
 
+    public SizeType getSizeType() {
+        return sizeType;
+    }
 }
