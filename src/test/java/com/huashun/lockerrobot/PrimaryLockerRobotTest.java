@@ -1,5 +1,6 @@
 package com.huashun.lockerrobot;
 
+import com.huashun.lockerrobot.exception.LockerIsFullException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import static com.huashun.lockerrobot.SizeType.M;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PrimaryLockerRobotTest {
 
@@ -44,5 +46,17 @@ public class PrimaryLockerRobotTest {
 
         assertEquals(M, ticket.getLockerSizeType());
         assertSame(storedBag, secondLocker.fetchBagBy(ticket));
+    }
+
+    @Test
+    public void should_throw_LockerIsFullException_when_store_bag_given_robot_manage_2_m_lockers_which_all_full() {
+        Locker firstLocker = new Locker(M, 1);
+        Locker secondLocker = new Locker(M, 1);
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(List.of(firstLocker, secondLocker));
+        primaryLockerRobot.store(new Bag(M));
+        primaryLockerRobot.store(new Bag(M));
+
+        assertThrows(LockerIsFullException.class, () -> primaryLockerRobot.store(new Bag(M)));
+
     }
 }

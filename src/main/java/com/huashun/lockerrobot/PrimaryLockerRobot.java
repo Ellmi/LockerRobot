@@ -1,6 +1,9 @@
 package com.huashun.lockerrobot;
 
+import com.huashun.lockerrobot.exception.LockerIsFullException;
+
 import java.util.List;
+import java.util.Optional;
 
 public class PrimaryLockerRobot {
     private List<Locker> managedLockers;
@@ -10,6 +13,10 @@ public class PrimaryLockerRobot {
     }
 
     public Ticket store(Bag bag) {
-        return managedLockers.stream().filter(Locker::canStoreBag).findFirst().get().store(bag);
+        Optional<Locker> goalLocker = managedLockers.stream().filter(Locker::canStoreBag).findFirst();
+        if (goalLocker.isPresent()) {
+            return goalLocker.get().store(bag);
+        }
+        throw new LockerIsFullException();
     }
 }
