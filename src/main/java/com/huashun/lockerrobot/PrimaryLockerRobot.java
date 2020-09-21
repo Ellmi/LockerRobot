@@ -19,4 +19,8 @@ public class PrimaryLockerRobot {
         }
         throw new LockerIsFullException();
     }
+
+    public Bag fetchBagBy(Ticket ticket) {
+        return managedLockers.stream().filter(locker -> locker.contains(ticket)).findAny().get().fetchBagBy(ticket);
+    }
 }

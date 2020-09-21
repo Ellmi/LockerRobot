@@ -38,4 +38,8 @@ public class Locker {
         if (bag == null) throw new InvalidTicketException();
         return bag;
     }
+
+    public boolean contains(Ticket ticket) {
+        return ticketBagMap.containsKey(ticket);
+    }
 }
