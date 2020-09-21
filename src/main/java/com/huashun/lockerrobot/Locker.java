@@ -6,7 +6,7 @@ import com.huashun.lockerrobot.exception.TicketTypeNotMatch;
 
 import java.util.HashMap;
 
-public class Locker {
+public class Locker implements Storable{
     private SizeType sizeType;
     private int capacity;
     private HashMap<Ticket, Bag> ticketBagMap;

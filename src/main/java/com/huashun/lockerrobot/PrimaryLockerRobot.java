@@ -7,7 +7,7 @@ import com.huashun.lockerrobot.exception.TicketTypeNotMatch;
 import java.util.List;
 import java.util.Optional;
 
-public class PrimaryLockerRobot {
+public class PrimaryLockerRobot implements Storable {
     private List<Locker> managedLockers;
 
     public PrimaryLockerRobot(List<Locker> managedLockers) {

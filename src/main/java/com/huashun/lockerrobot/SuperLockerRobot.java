@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class SuperLockerRobot {
+public class SuperLockerRobot implements Storable {
     private List<Locker> managedLockers;
 
     public SuperLockerRobot(List<Locker> managedLockers) {
