@@ -18,4 +18,8 @@ public class SuperLockerRobot {
         if (goalLocker.isPresent() && goalLocker.get().getCapacityRate() != 0) return goalLocker.get().store(bag);
         throw new LockerIsFullException();
     }
+
+    public Bag fetchBagBy(Ticket ticket) {
+        return managedLockers.get(0).fetchBagBy(ticket);
+    }
 }

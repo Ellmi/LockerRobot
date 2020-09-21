@@ -47,4 +47,18 @@ public class SuperLockerRobotTest {
         assertThrows(LockerIsFullException.class, () -> superLockerRobot.store(new Bag(L)));
 
     }
+
+    @Test
+    public void should_return_correct_bag_when_fetch_bag_given_valid_l_ticket() {
+        Locker locker = new Locker(L, 1);
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(List.of(locker));
+        Bag storedBag = new Bag(L);
+        Ticket ticket = superLockerRobot.store(storedBag);
+
+        Bag fetchedBag = superLockerRobot.fetchBagBy(ticket);
+
+        assertEquals(L, ticket.getLockerSizeType());
+        assertSame(storedBag, fetchedBag);
+
+    }
 }
