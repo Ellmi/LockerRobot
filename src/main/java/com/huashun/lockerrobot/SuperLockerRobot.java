@@ -1,8 +1,7 @@
 package com.huashun.lockerrobot;
 
+import java.util.Comparator;
 import java.util.List;
-
-import static com.huashun.lockerrobot.SizeType.L;
 
 public class SuperLockerRobot {
     private List<Locker> managedLockers;
@@ -12,6 +11,6 @@ public class SuperLockerRobot {
     }
 
     public Ticket store(Bag bag) {
-        return new Ticket(L);
+        return managedLockers.stream().max(Comparator.comparing(locker -> locker.getCapacityRate())).get().store(bag);
     }
 }

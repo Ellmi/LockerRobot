@@ -18,12 +18,15 @@ public class Locker {
     }
 
     public boolean canStoreBag() {
-        return capacity > 0;
+        return capacity > ticketBagMap.size();
+    }
+
+    public double getCapacityRate() {
+        return (capacity - ticketBagMap.size()) / (double) capacity;
     }
 
     public Ticket store(Bag bag) {
-        if (capacity == 0) throw new LockerIsFullException();
-        capacity--;
+        if (!canStoreBag()) throw new LockerIsFullException();
         Ticket ticket = new Ticket(sizeType);
         ticketBagMap.put(ticket, bag);
         return ticket;
